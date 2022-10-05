@@ -33,7 +33,6 @@ If you need to refresh the methods and paths checkout the student portal :)
 - [ ] Up to you now implement the functionality to delete a character.
 
 - [ ] How you could make the code DRYer?
-
   - Remove some inconsistency
   - Reuse some pieces of code
 
