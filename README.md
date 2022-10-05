@@ -9,8 +9,9 @@ If you need to refresh the methods and paths checkout the student portal :)
 ### Bugs, bugs and more bugs
 
 - [ ] As you can see when you click the link on the home page you get a 404 error. This means the route doesn't exist, but if we check `characters.routes.js` we can see the route exists already.
+
 <details> 
-  <sumary> Spoiler: Solution </sumary>
+  <summary> Spoiler: Solution </summary>
 
   on the `app.js` add
 
@@ -19,22 +20,98 @@ If you need to refresh the methods and paths checkout the student portal :)
     app.use('/', charRoutes)
   ```
 
-
 </details>
 
 - [ ] After we fix our first bug we can see the app is crashing directly, read the error, found the bug and fix it (I was typing in a hurry and used the wrong syntax, in this context, for that one).
 
+<details> 
+  <summary> Spoiler: Solution </summary>
+
+  on the `characters.routes.js` change:
+
+  change from:
+  ```javascript
+    import axios from 'axios'
+  ```
+  to:
+  ```javascript
+    const axios = require('axios')
+  ```
+
+</details>
+
+
 - [ ] Ok, we fixed the syntax mistakes, now what? The server it's still crashing, why? Read the `TypeError` the code on `characters.routes.js` is missing a key point at the end.
+
+<details> 
+  <summary> Spoiler: Solution </summary>
+
+  on the `characters.routes.js` add:
+
+  ```javascript
+    module.exports = router
+  ```
+
+</details>
 
 - [ ] Nice, everything is working!! But when we try to click on the link on the home page we still got a problem saying that the route doesn't exist.
   - Compare the url on the browser and on the `.get('/')`
   - All our routes should be `http://localhost:3000/characters`, how we can achieve that without changing the routes inside the parenthesis on `characters.routes.js`?
 
+<details> 
+  <summary> Spoiler: Solution </summary>
+
+  on the `app.js` change to:
+
+  ```javascript
+    app.use('/characters', charRoutes)
+  ```
+
+</details> 
+
 - [ ] How many bugs you get on the code Felipe? Now everything should be fine, so why the code is breaking? Check the terminal and see what is the problem.
+
+<details> 
+  <summary> Spoiler: Solution </summary>
+
+  on the `characters.routes.js` (remove the slash at the beginning of the `res.render()`) change to:
+
+  ```javascript
+     res.render('characters/list', {characters: response.data})
+  ```
+
+</details> 
 
 - [ ] Ok, we fixed the problem on the route, now what? Check the view and correct my mistake there :D
 
+<details> 
+  <summary> Spoiler: Solution </summary>
+
+  on the `list.hbs` change the `#` for a `/` on the closing `each`:
+
+  ```hbs
+    {{#each characters}}
+      <p> {{this.name}} </p>
+      <a href="/characters/{{this.id}}/details"> More Details  </a>
+    {{/each}}
+  ```
+
+</details> 
+
 - [ ] Try to create a new char => GODDAMMIT FELIPE!! after creating a character the user should be redirected to the characters list page.
+
+
+<details> 
+  <summary> Spoiler: Solution </summary>
+
+  on the `characters.routes.js` on the post route that create a character add a `/` on the redirect:
+
+  ```javascript
+    res.redirect('/characters')
+  ```
+
+</details> 
+
 
 - [ ] Try to edit your newly created character and yes, you guessed right, another bug :D Check the url that you got on the browser and after that check the route. `Hint: A form shouldn't send the information on the navigation bar`
 
