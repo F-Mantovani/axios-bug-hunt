@@ -100,7 +100,6 @@ If you need to refresh the methods and paths checkout the student portal :)
 
 - [ ] Try to create a new char => GODDAMMIT FELIPE!! after creating a character the user should be redirected to the characters list page.
 
-
 <details> 
   <summary> Spoiler: Solution </summary>
 
@@ -115,7 +114,30 @@ If you need to refresh the methods and paths checkout the student portal :)
 
 - [ ] Try to edit your newly created character and yes, you guessed right, another bug :D Check the url that you got on the browser and after that check the route. `Hint: A form shouldn't send the information on the navigation bar`
 
+<details> 
+  <summary> Spoiler: Solution </summary>
+
+  on the `edit-character.hbs` change the `METHOD` from `GET` to `POST`:
+
+  ```hbs
+<form action="/characters/{{id}}/edit" method="POST">
+  ```
+
+</details> 
+
 - [ ] After you fix the form you'll need to also fix the route, because even if you're getting information from the request you don't have an update on the character. `Hint: Check the method being used`
+
+<details> 
+  <summary> Spoiler: Solution </summary>
+
+  on the `characters.routes.js` on the post route that updates a character change the method to PUT:
+
+  ```javascript
+    axios
+    .put(`https://ih-crud-api.herokuapp.com/characters/${req.params.id}`, updatedCharacter)
+  ```
+
+</details> 
 
 ### Bonus
 
