@@ -1,0 +1,7 @@
+<a href="/characters/create"> Create a new character</a>
+<h2> List of the characters </h2>
+
+{{#each characters}}
+  <p> {{this.name}} </p>
+  <a href="/characters/{{this.id}}/details"> More Details  </a>
+{{/each}}

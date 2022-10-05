@@ -1,0 +1,24 @@
+<h2> Editing {{name}} </h2>
+
+<form action="/characters/{{id}}/edit" method="POST">
+
+  <label> Name:
+    <input type="text" value="{{name}}" name="name"  />
+  </label>
+
+  <label> Occupation:
+    <input type="text" value="{{occupation}}" name="occupation"  />
+  </label>
+
+  <label> Debt:
+    <input type="text" value="{{debt}}" name="debt"  />
+  </label>
+
+  <label> Weapon:
+    <input type="text" value="{{weapon}}" name="weapon"  />
+  </label>
+
+
+  <button type="submit"> Save changes </button>
+
+ </form>
