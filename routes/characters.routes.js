@@ -1,5 +1,5 @@
 const { Router } = require('express')
-const axios = require('axios')
+import axios from 'axios'
 
 const router = Router()
 
@@ -7,7 +7,7 @@ router.get('/', (req, res, next) => {
   axios
     .get('https://ih-crud-api.herokuapp.com/characters/')
     .then(response => {
-      res.render('characters/list', {characters: response.data})
+      res.render('/characters/list', {characters: response.data})
     })
     .catch(err => {
       console.log('Error getting character', err)
@@ -30,7 +30,7 @@ router.post('/create', (req, res, next) => {
     .post('https://ih-crud-api.herokuapp.com/characters/', newChar)
     .then(newEntry => {
       console.log(newEntry)
-      res.redirect('/characters')
+      res.redirect('characters')
     })
     .catch(err => {
       console.log('Error creating a character', err)
@@ -70,7 +70,7 @@ router.post('/:id/edit', (req, res, next) => {
     debt: req.body.debt,
   }
   axios
-    .put(`https://ih-crud-api.herokuapp.com/characters/${req.params.id}`, updatedCharacter)
+    .get(`https://ih-crud-api.herokuapp.com/characters/${req.params.id}`, updatedCharacter)
     .then(() => {
 
       res.redirect('/characters')
@@ -80,5 +80,3 @@ router.post('/:id/edit', (req, res, next) => {
       next(err)
     })
 })
-
-module.exports = router
