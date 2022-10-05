@@ -9,6 +9,18 @@ If you need to refresh the methods and paths checkout the student portal :)
 ### Bugs, bugs and more bugs
 
 - [ ] As you can see when you click the link on the home page you get a 404 error. This means the route doesn't exist, but if we check `characters.routes.js` we can see the route exists already.
+<details> 
+  <sumary> Spoiler: Solution </sumary>
+
+  on the `app.js` add
+
+  ```javascript
+    const charRoutes = require('./routes/characters.routes.js')
+    app.use('/', charRoutes)
+  ```
+
+
+</details>
 
 - [ ] After we fix our first bug we can see the app is crashing directly, read the error, found the bug and fix it (I was typing in a hurry and used the wrong syntax, in this context, for that one).
 
